@@ -1,0 +1,20 @@
+version: "2"
+services:
+  calibre:
+    image: linuxserver/calibre:6.11.0
+    container_name: calibre
+    restart: unless-stopped
+    environment:
+      - UMASK_SET # For umask setting of Calibre, default if left unset is 022.
+      - TZ=Europe/Sofia
+      - PUI=1000 # UID of user to take ownership of application/files
+      - PGID=1000 # GID of user to take ownership of application/files
+      - GUAC_USER=stan
+      - GUAC_PASS=password
+    volumes:
+      - /host/path/to/config:/config # Where calibre should store its database and library
+    ports:
+      - 8081:8081/tcp # Calibre webserver gui.
+      - 8080:8080/tcp # Calibre desktop gui.
+    volume:
+       config:
