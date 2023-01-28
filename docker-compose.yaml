@@ -12,9 +12,9 @@ services:
       - GUAC_USER=stan
       - GUAC_PASS=password
     volumes:
-      - /host/path/to/config:/config # Where calibre should store its database and library
+      - hostconfig:/config # Where calibre should store its database and library
     ports:
       - 8081:8081/tcp # Calibre webserver gui.
       - 8080:8080/tcp # Calibre desktop gui.
     volume:
-       config:
+       config:hostconfig
